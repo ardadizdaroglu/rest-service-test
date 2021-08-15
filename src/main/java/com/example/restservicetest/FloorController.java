@@ -6,11 +6,9 @@ import java.util.Random;
 
 @RestController
 public class FloorController {
-    int min = 1;
-    int max = 10;
 
     Random random = new Random();
-    int value = random.nextInt(max + min) + min;
+    int value = random.nextInt(Constants.MAX_NUM_OF_FLOORS + Constants.MIN_NUM_OF_FLOORS) + Constants.MIN_NUM_OF_FLOORS;
 
     Parking parking = new Parking(value);
 
