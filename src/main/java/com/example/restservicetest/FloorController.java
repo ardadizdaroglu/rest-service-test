@@ -22,8 +22,8 @@ public class FloorController {
         return parking.getFloor(id);
     }
 
-    @PutMapping("/parking/floor")
-    public String updateProperFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
+    @PostMapping("/parking/car")
+    public String addCarToProperFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
         return parking.addCarToParking(h,w);
     }
 
