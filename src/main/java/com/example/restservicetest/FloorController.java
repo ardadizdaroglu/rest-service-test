@@ -28,7 +28,7 @@ public class FloorController {
     }
 
     @PutMapping("/floor")
-    public void newFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
-        parking.addCarToParking(h,w);
+    public String newFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
+        return parking.addCarToParking(h,w);
     }
 }

@@ -29,15 +29,15 @@ public class Parking {
         return floors;
     }
 
-    public void addCarToParking(int height, int weight){
+    public String addCarToParking(int height, int weight){
         for(int i = 0; i< floors.length; i++){
             if ((floors[i].getWeight() > weight) && (floors[i].getHeight() > height)){
                 int current_weight = floors[i].getWeight();
                 int car_weight = weight;
                 floors[i].setWeight(current_weight-car_weight);
-                return;
+                return "This car is added to Floor " + i;
             }
         }
-        System.out.println("Can't add this car.");
+        return "This car can't add anywhere";
     }
 }
