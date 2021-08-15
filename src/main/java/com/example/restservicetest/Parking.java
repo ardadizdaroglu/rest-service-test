@@ -62,10 +62,14 @@ public class Parking {
             floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
             cars.remove(carId);
             numOfCars--;
-            return "Ucret: " + diffInSeconds;
+            return "Saniye: " + diffInSeconds + " Fiyat: " + calculateFee(diffInSeconds);
         }
         catch (Exception e){
             return e.toString();
         }
+    }
+
+    public long calculateFee(long hours){
+        return hours*Constants.PRICE_PER_HOUR;
     }
 }
