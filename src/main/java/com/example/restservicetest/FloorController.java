@@ -1,9 +1,6 @@
 package com.example.restservicetest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
@@ -17,8 +14,8 @@ public class FloorController {
 
     Parking parking = new Parking(value);
 
-    @GetMapping("/floor")
-    public Floor floor(@RequestParam(value = "id", defaultValue = "0") int id){
+    @GetMapping("/parking/floor/{id}")
+    public Floor floor(@PathVariable(value = "id") int id){
         return parking.getFloor(id);
     }
 
