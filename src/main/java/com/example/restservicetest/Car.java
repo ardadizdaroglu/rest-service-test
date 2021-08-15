@@ -1,14 +1,20 @@
 package com.example.restservicetest;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Car {
 
     private int carId;
+    private int floorId;
     private int carHeight;
     private int carWeight;
+    private Date enterTime;
 
     public Car(int carHeight, int carWeight) {
         this.carHeight = carHeight;
         this.carWeight = carWeight;
+        this.enterTime = Calendar.getInstance().getTime();
     }
 
     public int getCarId() {
@@ -33,5 +39,21 @@ public class Car {
 
     public void setCarWeight(int carWeight) {
         this.carWeight = carWeight;
+    }
+
+    public Date getEnterTime() {
+        return enterTime;
+    }
+
+    public void setEnterTime(Date enterTime) {
+        this.enterTime = enterTime;
+    }
+
+    public int getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(int floorId) {
+        this.floorId = floorId;
     }
 }

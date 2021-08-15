@@ -61,4 +61,8 @@ public class Floor {
         cars.add(car);
         numOfCars++;
     }
+    public void deleteCarFromFloor(Car car){
+        cars.remove(car);
+        numOfCars--;
+    }
 }

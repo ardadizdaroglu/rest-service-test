@@ -1,10 +1,12 @@
 package com.example.restservicetest;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Parking {
 
     private Floor floors[];
+    ArrayList<Car> cars = new ArrayList<Car>();
     int numOfCars;
 
     public Parking(int numOfFloors) {
@@ -40,6 +42,8 @@ public class Parking {
                 int car_weight = weight;
                 Car car = new Car(height, car_weight);
                 car.setCarId(numOfCars);
+                car.setFloorId(i);
+                cars.add(car);
                 numOfCars++;
                 floors[i].addCarToFloor(car);
                 floors[i].setFloorWeight(current_weight-car_weight);
@@ -47,5 +51,19 @@ public class Parking {
             }
         }
         return "This car can't add anywhere";
+    }
+
+    public String deleteCar(int carId){
+        try{
+            int floorId = cars.get(carId).getFloorId();
+            int carWeight = cars.get(carId).getCarWeight();
+            floors[floorId].deleteCarFromFloor(cars.get(carId));
+            floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
+            cars.remove(carId);
+            return "okey..";
+        }
+        catch (Exception e){
+            return e.toString();
+        }
     }
 }

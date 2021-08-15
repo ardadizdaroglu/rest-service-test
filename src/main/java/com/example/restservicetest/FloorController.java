@@ -28,4 +28,9 @@ public class FloorController {
     public String updateProperFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
         return parking.addCarToParking(h,w);
     }
+
+    @DeleteMapping("/parking/car/{carId}")
+    public String exitCar(@PathVariable(value = "carId") int carId){
+        return parking.deleteCar(carId);
+    }
 }
