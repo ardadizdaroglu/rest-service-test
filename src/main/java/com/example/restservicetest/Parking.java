@@ -24,4 +24,7 @@ public class Parking {
     public Floor getFloor(int index){
         return floors[index];
     }
+    public Floor[] getFloors(){
+        return floors;
+    }
 }

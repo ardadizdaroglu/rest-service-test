@@ -20,4 +20,9 @@ public class FloorController {
     public Floor floor(@RequestParam(value = "id", defaultValue = "0") int id){
         return parking.getFloor(id);
     }
+
+    @GetMapping("/parking")
+    public Floor[] parking(){
+        return parking.getFloors();
+    }
 }
