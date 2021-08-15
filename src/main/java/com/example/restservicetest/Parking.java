@@ -48,15 +48,24 @@ public class Parking {
     }
 
     public String deleteCar(int carId){
+        int floorId = 0;
+        int carWeight = 0;
+        Date exitTime = Calendar.getInstance().getTime();
+        long duration = 0;
+        long diffInSeconds = 0;
         try{
-            int floorId = cars.get(carId).getFloorId();
-            int carWeight = cars.get(carId).getCarWeight();
-            Date exitTime = Calendar.getInstance().getTime();
-            long duration = exitTime.getTime() - cars.get(carId).getEnterTime().getTime();
-            long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-            floors[floorId].deleteCarFromFloor(cars.get(carId));
-            floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
-            cars.remove(carId);
+            for(Car car: cars) {
+                if (car.getCarId() == carId) {
+                    floorId = car.getFloorId();
+                    carWeight = car.getCarWeight();
+                    duration = exitTime.getTime() - car.getEnterTime().getTime();
+                    diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+                    floors[floorId].deleteCarFromFloor(car);
+                    floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
+                    cars.remove(car);
+                    break;
+                }
+            }
             return "Duration: " + diffInSeconds + " seconds. Fee: " + calculateFee(diffInSeconds);
         }
         catch (Exception e){
