@@ -5,9 +5,12 @@ import java.util.Random;
 public class Parking {
 
     private Floor floors[];
+    int numOfCars;
 
     public Parking(int numOfFloors) {
         floors = new Floor[numOfFloors];
+
+        numOfCars = 0;
 
         int min_height = 1;
         int max_height = 10;
@@ -32,10 +35,14 @@ public class Parking {
 
     public String addCarToParking(int height, int weight){
         for(int i = 0; i< floors.length; i++){
-            if ((floors[i].getWeight() > weight) && (floors[i].getHeight() > height)){
-                int current_weight = floors[i].getWeight();
+            if ((floors[i].getFloorWeight() > weight) && (floors[i].getFloorHeight() > height)){
+                int current_weight = floors[i].getFloorWeight();
                 int car_weight = weight;
-                floors[i].setWeight(current_weight-car_weight);
+                Car car = new Car(height, car_weight);
+                car.setCarId(numOfCars);
+                numOfCars++;
+                floors[i].addCarToFloor(car);
+                floors[i].setFloorWeight(current_weight-car_weight);
                 return "This car is added to Floor " + i;
             }
         }
