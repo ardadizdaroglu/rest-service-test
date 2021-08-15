@@ -1,6 +1,7 @@
 package com.example.restservicetest;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +25,10 @@ public class FloorController {
     @GetMapping("/parking")
     public Floor[] parking(){
         return parking.getFloors();
+    }
+
+    @PutMapping("/floor")
+    public void newFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
+        parking.addCarToParking(h,w);
     }
 }
