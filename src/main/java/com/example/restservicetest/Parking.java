@@ -1,7 +1,10 @@
 package com.example.restservicetest;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Parking {
 
@@ -57,10 +60,14 @@ public class Parking {
         try{
             int floorId = cars.get(carId).getFloorId();
             int carWeight = cars.get(carId).getCarWeight();
+            Date exitTime = Calendar.getInstance().getTime();
+            long duration = exitTime.getTime() - cars.get(carId).getEnterTime().getTime();
+            long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
             floors[floorId].deleteCarFromFloor(cars.get(carId));
             floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
             cars.remove(carId);
-            return "okey..";
+            numOfCars--;
+            return "Ucret: " + diffInSeconds;
         }
         catch (Exception e){
             return e.toString();
