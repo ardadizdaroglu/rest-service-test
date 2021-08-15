@@ -8,13 +8,11 @@ public class Floor {
     private int floorHeight;
     private int floorWeight;
     ArrayList<Car> cars = new ArrayList<Car>();
-    private int numOfCars;
 
     public Floor(int floorId, int floorHeight, int floorWeight) {
         this.floorId = floorId;
         this.floorHeight = floorHeight;
         this.floorWeight = floorWeight;
-        this.numOfCars = 0;
     }
 
     public int getFloorId() {
@@ -49,20 +47,10 @@ public class Floor {
         this.cars = cars;
     }
 
-    public int getNumOfCars() {
-        return numOfCars;
-    }
-
-    public void setNumOfCars(int numOfCars) {
-        this.numOfCars = numOfCars;
-    }
-
     public void addCarToFloor(Car car){
         cars.add(car);
-        numOfCars++;
     }
     public void deleteCarFromFloor(Car car){
         cars.remove(car);
-        numOfCars--;
     }
 }

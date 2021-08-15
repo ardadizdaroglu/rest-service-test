@@ -10,12 +10,9 @@ public class Parking {
 
     private Floor floors[];
     ArrayList<Car> cars = new ArrayList<Car>();
-    int numOfCars;
 
     public Parking(int numOfFloors) {
         floors = new Floor[numOfFloors];
-
-        numOfCars = 0;
 
         Random random = new Random();
         for(int i = 0; i< numOfFloors; i++){
@@ -39,10 +36,9 @@ public class Parking {
                 int current_weight = floors[i].getFloorWeight();
                 int car_weight = weight;
                 Car car = new Car(height, car_weight);
-                car.setCarId(numOfCars);
+                car.setCarId(cars.size());
                 car.setFloorId(i);
                 cars.add(car);
-                numOfCars++;
                 floors[i].addCarToFloor(car);
                 floors[i].setFloorWeight(current_weight-car_weight);
                 return "This car is added to Floor " + i;
@@ -61,7 +57,6 @@ public class Parking {
             floors[floorId].deleteCarFromFloor(cars.get(carId));
             floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
             cars.remove(carId);
-            numOfCars--;
             return "Duration: " + diffInSeconds + " seconds. Fee: " + calculateFee(diffInSeconds);
         }
         catch (Exception e){
