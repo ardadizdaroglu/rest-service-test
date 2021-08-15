@@ -14,18 +14,18 @@ public class FloorController {
 
     Parking parking = new Parking(value);
 
-    @GetMapping("/parking/floor/{id}")
-    public Floor floor(@PathVariable(value = "id") int id){
-        return parking.getFloor(id);
-    }
-
     @GetMapping("/parking")
-    public Floor[] parking(){
+    public Floor[] getWholeParking(){
         return parking.getFloors();
     }
 
+    @GetMapping("/parking/floor/{id}")
+    public Floor getFloorById(@PathVariable(value = "id") int id){
+        return parking.getFloor(id);
+    }
+
     @PutMapping("/floor")
-    public String newFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
+    public String updateProperFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w){
         return parking.addCarToParking(h,w);
     }
 }
