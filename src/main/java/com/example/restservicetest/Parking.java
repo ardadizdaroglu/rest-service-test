@@ -53,23 +53,19 @@ public class Parking {
         Date exitTime = Calendar.getInstance().getTime();
         long duration = 0;
         long diffInSeconds = 0;
-        try {
-            for (Car car : cars) {
-                if (car.getCarId() == carId) {
-                    floorId = car.getFloorId();
-                    carWeight = car.getCarWeight();
-                    duration = exitTime.getTime() - car.getEnterTime().getTime();
-                    diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-                    floors[floorId].deleteCarFromFloor(car);
-                    floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
-                    cars.remove(car);
-                    break;
-                }
+        for (Car car : cars) {
+            if (car.getCarId() == carId) {
+                floorId = car.getFloorId();
+                carWeight = car.getCarWeight();
+                duration = exitTime.getTime() - car.getEnterTime().getTime();
+                diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+                floors[floorId].deleteCarFromFloor(car);
+                floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
+                cars.remove(car);
+                return "Duration: " + diffInSeconds + " seconds. Fee: " + calculateFee(diffInSeconds);
             }
-            return "Duration: " + diffInSeconds + " seconds. Fee: " + calculateFee(diffInSeconds);
-        } catch (Exception e) {
-            return e.toString();
         }
+        return "This car isn't existed.";
     }
 
     public long calculateFee(long seconds) {
