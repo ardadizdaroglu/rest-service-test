@@ -47,10 +47,11 @@ public class Floor {
         this.cars = cars;
     }
 
-    public void addCarToFloor(Car car){
+    public void addCarToFloor(Car car) {
         cars.add(car);
     }
-    public void deleteCarFromFloor(Car car){
+
+    public void deleteCarFromFloor(Car car) {
         cars.remove(car);
     }
 }
