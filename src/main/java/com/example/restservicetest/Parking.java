@@ -47,12 +47,12 @@ public class Parking {
                 return map;
             }
         }
-        map.put("message", "This car can't be added anywhere.");
         map.put("status", HttpStatus.FORBIDDEN);
         return map;
     }
 
-    public String deleteCar(int carId) {
+    public Map<String, Object> deleteCar(int carId) {
+        Map<String, Object> map = new HashMap<String, Object>();
         int floorId = 0;
         int carWeight = 0;
         Date exitTime = Calendar.getInstance().getTime();
@@ -67,10 +67,14 @@ public class Parking {
                 floors[floorId].deleteCarFromFloor(car);
                 floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
                 cars.remove(car);
-                return "Duration: " + diffInSeconds + " seconds. Fee: " + calculateFee(diffInSeconds);
+                map.put("duration", diffInSeconds);
+                map.put("fee", calculateFee(diffInSeconds));
+                map.put("status", HttpStatus.OK);
+                return map;
             }
         }
-        return "This car isn't existed.";
+        map.put("status", HttpStatus.FORBIDDEN);
+        return map;
     }
 
     public long calculateFee(long seconds) {

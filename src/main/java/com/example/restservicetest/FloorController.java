@@ -39,7 +39,13 @@ public class FloorController {
     }
 
     @DeleteMapping("/parking/car/{carId}")
-    public String exitCar(@PathVariable(value = "carId") int carId) {
-        return parking.deleteCar(carId);
+    public ResponseEntity<Object> exitCar(@PathVariable(value = "carId") int carId) {
+        Map<String, Object> resultMap = parking.deleteCar(carId);
+        if(resultMap.get("status") == HttpStatus.OK){
+            return ResponseHandler.generateResponse("Successfully a car left from parking.", HttpStatus.OK, resultMap);
+        }
+        else{
+            return ResponseHandler.generateResponse("This car isn't existed.", HttpStatus.FORBIDDEN, resultMap);
+        }
     }
 }
