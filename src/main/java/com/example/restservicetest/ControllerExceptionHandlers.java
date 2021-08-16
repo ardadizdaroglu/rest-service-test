@@ -13,7 +13,7 @@ public class ControllerExceptionHandlers extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(value = { ArrayIndexOutOfBoundsException.class })
     protected ResponseEntity<Object> arrayIndexOutOfBoundsException(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "You entered a larger number than the existing floor number";
+        String bodyOfResponse = "You entered a larger number than the existing number of floors";
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.restservicetest;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
@@ -13,13 +15,15 @@ public class FloorController {
     Parking parking = new Parking(value);
 
     @GetMapping("/parking")
-    public Floor[] getWholeParking() {
-        return parking.getFloors();
+    public ResponseEntity<Object> getWholeParking() {
+        Floor[] floors = parking.getFloors();
+        return ResponseHandler.generateResponse("Successfully get whole parking floors!", HttpStatus.OK, floors);
     }
 
     @GetMapping("/parking/floor/{id}")
-    public Floor getFloorById(@PathVariable(value = "id") int id) {
-        return parking.getFloor(id);
+    public ResponseEntity<Object> getFloorById(@PathVariable(value = "id") int id) {
+        Floor floor = parking.getFloor(id);
+        return ResponseHandler.generateResponse("Successfully you get floor " + id, HttpStatus.OK, floor);
     }
 
     @PostMapping("/parking/car")
