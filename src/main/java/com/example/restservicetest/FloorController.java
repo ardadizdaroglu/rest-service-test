@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Random;
 
 @RestController
@@ -27,8 +28,14 @@ public class FloorController {
     }
 
     @PostMapping("/parking/car")
-    public String addCarToProperFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w) {
-        return parking.addCarToParking(h, w);
+    public ResponseEntity<Object> addCarToProperFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w) {
+        Map<String, Object> resultMap = parking.addCarToParking(h, w);
+        if(resultMap.get("status") == HttpStatus.OK){
+            return ResponseHandler.generateResponse("Successfully a car entered to parking.", HttpStatus.CREATED, resultMap.get("data"));
+        }
+        else{
+            return ResponseHandler.generateResponse("This car can't be added anywhere.", HttpStatus.FORBIDDEN, resultMap);
+        }
     }
 
     @DeleteMapping("/parking/car/{carId}")

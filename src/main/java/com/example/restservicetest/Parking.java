@@ -1,9 +1,8 @@
 package com.example.restservicetest;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import org.springframework.http.HttpStatus;
+
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Parking {
@@ -30,7 +29,8 @@ public class Parking {
         return floors;
     }
 
-    public String addCarToParking(int height, int weight) {
+    public Map<String, Object> addCarToParking(int height, int weight) {
+        Map<String, Object> map = new HashMap<String, Object>();
         for (int i = 0; i < floors.length; i++) {
             if ((floors[i].getFloorWeight() > weight) && (floors[i].getFloorHeight() > height)) {
                 int current_weight = floors[i].getFloorWeight();
@@ -41,10 +41,15 @@ public class Parking {
                 cars.add(car);
                 floors[i].addCarToFloor(car);
                 floors[i].setFloorWeight(current_weight - car_weight);
-                return "This car is added to Floor " + i;
+                map.put("message", "This car is added to Floor " + i);
+                map.put("status", HttpStatus.OK);
+                map.put("data", car);
+                return map;
             }
         }
-        return "This car can't add anywhere";
+        map.put("message", "This car can't be added anywhere.");
+        map.put("status", HttpStatus.FORBIDDEN);
+        return map;
     }
 
     public String deleteCar(int carId) {
