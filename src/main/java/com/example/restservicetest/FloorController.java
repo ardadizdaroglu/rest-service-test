@@ -10,10 +10,10 @@ import java.util.Random;
 @RestController
 public class FloorController {
 
-    Random random = new Random();
-    int value = random.nextInt(Constants.MAX_NUM_OF_FLOORS + Constants.MIN_NUM_OF_FLOORS) + Constants.MIN_NUM_OF_FLOORS;
+    private final Random random = new Random();
+    private final int value = random.nextInt(Constants.MAX_NUM_OF_FLOORS + Constants.MIN_NUM_OF_FLOORS) + Constants.MIN_NUM_OF_FLOORS;
 
-    Parking parking = new Parking(value);
+    private final Parking parking = new Parking(value);
 
     @GetMapping("/parking")
     public ResponseEntity<Object> getWholeParking() {

@@ -7,8 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Parking {
 
-    private Floor floors[];
-    ArrayList<Car> cars = new ArrayList<Car>();
+    private final Floor[] floors;
+    private final ArrayList<Car> cars = new ArrayList<>();
 
     public Parking(int numOfFloors) {
         floors = new Floor[numOfFloors];
@@ -29,12 +29,11 @@ public class Parking {
         return floors;
     }
 
-    public Map<String, Object> addCarToParking(int height, int weight) {
-        Map<String, Object> map = new HashMap<String, Object>();
+    public Map<String, Object> addCarToParking(int height, int car_weight) {
+        Map<String, Object> map = new HashMap<>();
         for (int i = 0; i < floors.length; i++) {
-            if ((floors[i].getFloorWeight() > weight) && (floors[i].getFloorHeight() > height)) {
+            if ((floors[i].getFloorWeight() > car_weight) && (floors[i].getFloorHeight() > height)) {
                 int current_weight = floors[i].getFloorWeight();
-                int car_weight = weight;
                 Car car = new Car(height, car_weight);
                 car.setCarId(cars.size());
                 car.setFloorId(i);
@@ -52,12 +51,12 @@ public class Parking {
     }
 
     public Map<String, Object> deleteCar(int carId) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        int floorId = 0;
-        int carWeight = 0;
+        Map<String, Object> map = new HashMap<>();
+        int floorId;
+        int carWeight;
         Date exitTime = Calendar.getInstance().getTime();
-        long duration = 0;
-        long diffInSeconds = 0;
+        long duration;
+        long diffInSeconds;
         for (Car car : cars) {
             if (car.getCarId() == carId) {
                 floorId = car.getFloorId();

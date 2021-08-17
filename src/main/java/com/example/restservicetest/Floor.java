@@ -7,7 +7,7 @@ public class Floor {
     private int floorId;
     private int floorHeight;
     private int floorWeight;
-    ArrayList<Car> cars = new ArrayList<Car>();
+    ArrayList<Car> cars = new ArrayList<>();
 
     public Floor(int floorId, int floorHeight, int floorWeight) {
         this.floorId = floorId;
