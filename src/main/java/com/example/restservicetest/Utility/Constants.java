@@ -1,4 +1,4 @@
-package com.example.restservicetest;
+package com.example.restservicetest.Utility;
 
 public class Constants {
     public static final int MIN_NUM_OF_FLOORS = 1;

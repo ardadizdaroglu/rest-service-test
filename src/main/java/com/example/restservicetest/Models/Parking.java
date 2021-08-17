@@ -1,5 +1,6 @@
-package com.example.restservicetest;
+package com.example.restservicetest.Models;
 
+import com.example.restservicetest.Utility.Constants;
 import org.springframework.http.HttpStatus;
 
 import java.util.*;

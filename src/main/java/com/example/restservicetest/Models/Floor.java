@@ -1,4 +1,6 @@
-package com.example.restservicetest;
+package com.example.restservicetest.Models;
+
+import com.example.restservicetest.Models.Car;
 
 import java.util.ArrayList;
 

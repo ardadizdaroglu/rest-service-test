@@ -1,4 +1,4 @@
-package com.example.restservicetest;
+package com.example.restservicetest.Models;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.example.restservicetest;
+package com.example.restservicetest.Configs;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
