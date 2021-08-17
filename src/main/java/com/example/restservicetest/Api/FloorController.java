@@ -19,19 +19,19 @@ public class FloorController {
 
     private final Parking parking = new Parking(value);
 
-    @GetMapping("/parking")
+    @GetMapping("/api/parking")
     public ResponseEntity<Object> getWholeParking() {
         Floor[] floors = parking.getFloors();
         return ResponseHandler.generateResponse("Successfully get whole parking floors!", HttpStatus.OK, floors);
     }
 
-    @GetMapping("/parking/floor/{id}")
+    @GetMapping("/api/parking/floor/{id}")
     public ResponseEntity<Object> getFloorById(@PathVariable(value = "id") int id) {
         Floor floor = parking.getFloor(id);
         return ResponseHandler.generateResponse("Successfully you get floor " + id, HttpStatus.OK, floor);
     }
 
-    @PostMapping("/parking/car")
+    @PostMapping("/api/parking/car")
     public ResponseEntity<Object> addCarToProperFloor(@RequestParam(value = "height", defaultValue = "0") int h, @RequestParam(value = "weight", defaultValue = "0") int w) {
         Map<String, Object> resultMap = parking.addCarToParking(h, w);
         if(resultMap.get("status") == HttpStatus.OK){
@@ -42,7 +42,7 @@ public class FloorController {
         }
     }
 
-    @DeleteMapping("/parking/car/{carId}")
+    @DeleteMapping("/api/parking/car/{carId}")
     public ResponseEntity<Object> exitCar(@PathVariable(value = "carId") int carId) {
         Map<String, Object> resultMap = parking.deleteCar(carId);
         if(resultMap.get("status") == HttpStatus.OK){
