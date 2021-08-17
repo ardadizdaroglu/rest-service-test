@@ -47,7 +47,7 @@ public class Parking {
                 return map;
             }
         }
-        map.put("status", HttpStatus.FORBIDDEN);
+        map.put("status", HttpStatus.NOT_ACCEPTABLE);
         return map;
     }
 
@@ -73,7 +73,7 @@ public class Parking {
                 return map;
             }
         }
-        map.put("status", HttpStatus.FORBIDDEN);
+        map.put("status", HttpStatus.NOT_ACCEPTABLE);
         return map;
     }
 
