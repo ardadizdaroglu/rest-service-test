@@ -38,7 +38,7 @@ public class FloorController {
             return ResponseHandler.generateResponse("Successfully a car entered to parking.", HttpStatus.CREATED, resultMap.get("data"));
         }
         else{
-            return ResponseHandler.generateResponse("This car can't be added anywhere.", HttpStatus.FORBIDDEN, resultMap);
+            return ResponseHandler.generateResponse("This car can't be added anywhere.", HttpStatus.NOT_ACCEPTABLE, resultMap);
         }
     }
 
@@ -49,7 +49,7 @@ public class FloorController {
             return ResponseHandler.generateResponse("Successfully a car left from parking.", HttpStatus.OK, resultMap);
         }
         else{
-            return ResponseHandler.generateResponse("This car isn't existed.", HttpStatus.FORBIDDEN, resultMap);
+            return ResponseHandler.generateResponse("This car isn't existed.", HttpStatus.NOT_ACCEPTABLE, resultMap);
         }
     }
 }
