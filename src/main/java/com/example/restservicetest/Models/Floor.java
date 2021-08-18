@@ -9,12 +9,14 @@ public class Floor {
     private int floorId;
     private int floorHeight;
     private int floorWeight;
+    private int floorRemainingWeight;
     ArrayList<Car> cars = new ArrayList<>();
 
     public Floor(int floorId, int floorHeight, int floorWeight) {
         this.floorId = floorId;
         this.floorHeight = floorHeight;
         this.floorWeight = floorWeight;
+        this.floorRemainingWeight = floorWeight;
     }
 
     public int getFloorId() {
@@ -47,6 +49,14 @@ public class Floor {
 
     public void setCars(ArrayList<Car> cars) {
         this.cars = cars;
+    }
+
+    public int getFloorRemainingWeight() {
+        return floorRemainingWeight;
+    }
+
+    public void setFloorRemainingWeight(int floorRemainingWeight) {
+        this.floorRemainingWeight = floorRemainingWeight;
     }
 
     public void addCarToFloor(Car car) {

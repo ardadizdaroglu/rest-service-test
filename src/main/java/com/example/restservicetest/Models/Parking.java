@@ -33,14 +33,14 @@ public class Parking {
     public Map<String, Object> addCarToParking(int height, int car_weight) {
         Map<String, Object> map = new HashMap<>();
         for (int i = 0; i < floors.length; i++) {
-            if ((floors[i].getFloorWeight() > car_weight) && (floors[i].getFloorHeight() > height)) {
-                int current_weight = floors[i].getFloorWeight();
+            if ((floors[i].getFloorRemainingWeight() > car_weight) && (floors[i].getFloorHeight() > height)) {
+                int current_weight = floors[i].getFloorRemainingWeight();
                 Car car = new Car(height, car_weight);
                 car.setCarId(cars.size());
                 car.setFloorId(i);
                 cars.add(car);
                 floors[i].addCarToFloor(car);
-                floors[i].setFloorWeight(current_weight - car_weight);
+                floors[i].setFloorRemainingWeight(current_weight - car_weight);
                 map.put("message", "This car is added to Floor " + i);
                 map.put("status", HttpStatus.OK);
                 map.put("data", car);
@@ -65,7 +65,7 @@ public class Parking {
                 duration = exitTime.getTime() - car.getEnterTime().getTime();
                 diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
                 floors[floorId].deleteCarFromFloor(car);
-                floors[floorId].setFloorWeight(floors[floorId].getFloorWeight() + carWeight);
+                floors[floorId].setFloorRemainingWeight(floors[floorId].getFloorRemainingWeight() + carWeight);
                 cars.remove(car);
                 map.put("duration", diffInSeconds);
                 map.put("fee", calculateFee(diffInSeconds));
