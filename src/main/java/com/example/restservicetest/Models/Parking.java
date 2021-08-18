@@ -77,6 +77,6 @@ public class Parking {
     }
 
     public long calculateFee(long minutes) {
-        return minutes * Constants.PRICE_PER_SECOND;
+        return minutes * Constants.PRICE_PER_MINUTE;
     }
 }

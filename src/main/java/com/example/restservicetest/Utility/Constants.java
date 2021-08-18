@@ -7,5 +7,5 @@ public class Constants {
     public static final int MAX_HEIGHT_OF_FLOORS = 10;
     public static final int MIN_WEIGHT_OF_FLOORS = 1;
     public static final int MAX_WEIGHT_OF_FLOORS = 10;
-    public static final int PRICE_PER_SECOND = 10;
+    public static final int PRICE_PER_MINUTE = 10;
 }
