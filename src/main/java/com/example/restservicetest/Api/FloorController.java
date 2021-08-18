@@ -15,7 +15,7 @@ import java.util.Random;
 public class FloorController {
 
     private final Random random = new Random();
-    private final int value = random.nextInt(Constants.MAX_NUM_OF_FLOORS + Constants.MIN_NUM_OF_FLOORS) + Constants.MIN_NUM_OF_FLOORS;
+    private final int value = random.nextInt(Constants.MAX_NUM_OF_FLOORS - Constants.MIN_NUM_OF_FLOORS + 1) + Constants.MIN_NUM_OF_FLOORS;
 
     private final Parking parking = new Parking(value);
 

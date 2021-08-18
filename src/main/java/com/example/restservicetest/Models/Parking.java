@@ -17,8 +17,8 @@ public class Parking {
         Random random = new Random();
         for (int i = 0; i < numOfFloors; i++) {
             floors[i] = new Floor(i,
-                    random.nextInt(Constants.MAX_HEIGHT_OF_FLOORS + Constants.MIN_HEIGHT_OF_FLOORS) + Constants.MIN_HEIGHT_OF_FLOORS,
-                    random.nextInt(Constants.MAX_WEIGHT_OF_FLOORS + Constants.MIN_WEIGHT_OF_FLOORS) + Constants.MIN_WEIGHT_OF_FLOORS);
+                    random.nextInt(Constants.MAX_HEIGHT_OF_FLOORS - Constants.MIN_HEIGHT_OF_FLOORS + 1) + Constants.MIN_HEIGHT_OF_FLOORS,
+                    random.nextInt(Constants.MAX_WEIGHT_OF_FLOORS - Constants.MIN_WEIGHT_OF_FLOORS + 1) + Constants.MIN_WEIGHT_OF_FLOORS);
         }
     }
 
