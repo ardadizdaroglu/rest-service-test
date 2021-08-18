@@ -56,18 +56,18 @@ public class Parking {
         int carWeight;
         Date exitTime = Calendar.getInstance().getTime();
         long duration;
-        long diffInSeconds;
+        long diffInMinutes;
         for (Car car : cars) {
             if (car.getCarId() == carId) {
                 floorId = car.getFloorId();
                 carWeight = car.getCarWeight();
                 duration = exitTime.getTime() - car.getEnterTime().getTime();
-                diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+                diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
                 floors[floorId].deleteCarFromFloor(car);
                 floors[floorId].setFloorRemainingWeight(floors[floorId].getFloorRemainingWeight() + carWeight);
                 cars.remove(car);
-                map.put("duration", diffInSeconds);
-                map.put("fee", calculateFee(diffInSeconds));
+                map.put("duration", diffInMinutes);
+                map.put("fee", calculateFee(diffInMinutes));
                 map.put("status", HttpStatus.OK);
                 return map;
             }
@@ -76,7 +76,7 @@ public class Parking {
         return map;
     }
 
-    public long calculateFee(long seconds) {
-        return seconds * Constants.PRICE_PER_SECOND;
+    public long calculateFee(long minutes) {
+        return minutes * Constants.PRICE_PER_SECOND;
     }
 }
