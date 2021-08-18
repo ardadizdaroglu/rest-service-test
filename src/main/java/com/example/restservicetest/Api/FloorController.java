@@ -22,7 +22,7 @@ public class FloorController {
     @GetMapping("/api/parking")
     public ResponseEntity<Object> getWholeParking() {
         Floor[] floors = parking.getFloors();
-        return ResponseHandler.generateResponse("Successfully get whole parking floors!", HttpStatus.OK, floors);
+        return ResponseHandler.generateResponse("Successfully you get whole parking floors!", HttpStatus.OK, floors);
     }
 
     @GetMapping("/api/parking/floor/{id}")
