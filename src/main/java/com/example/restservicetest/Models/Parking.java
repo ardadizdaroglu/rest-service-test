@@ -30,17 +30,16 @@ public class Parking {
         return floors;
     }
 
-    public Map<String, Object> addCarToParking(int height, int car_weight) {
+    public Map<String, Object> addCarToParking(int carHeight, int carWeight) {
         Map<String, Object> map = new HashMap<>();
         for (int i = 0; i < floors.length; i++) {
-            if ((floors[i].getFloorRemainingWeight() > car_weight) && (floors[i].getFloorHeight() > height)) {
-                int current_weight = floors[i].getFloorRemainingWeight();
-                Car car = new Car(height, car_weight);
+            if ((floors[i].getFloorRemainingWeight() > carWeight) && (floors[i].getFloorHeight() > carHeight)) {
+                Car car = new Car(carHeight, carWeight);
                 car.setCarId(cars.size());
                 car.setFloorId(i);
                 cars.add(car);
                 floors[i].addCarToFloor(car);
-                floors[i].setFloorRemainingWeight(current_weight - car_weight);
+                floors[i].setFloorRemainingWeight(floors[i].getFloorRemainingWeight() - carWeight);
                 map.put("message", "This car is added to Floor " + i);
                 map.put("status", HttpStatus.OK);
                 map.put("data", car);
